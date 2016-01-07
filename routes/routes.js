@@ -9,16 +9,16 @@ module.exports = function(server) {
         .engine('html', require('ejs').renderFile)
 
         .use(express.static('./static'))
-        .use(express.static('./bower_components'))
+        .use(express.static('./node_modules/angular2'))
+        .use(express.static('./node_modules/systemjs'))
+        .use(express.static('./node_modules/rxjs'))
 
         .use(bodyParser.urlencoded({extended: true}))
         .use(bodyParser.json());
 
-    server.get('/',
-        function(req, res) {
-            server.render('index.html',
-                function(error, rendered) {
-                    res.send(rendered);
-                })
-        });
+    server.all('*',
+        function (req, res) {
+            res.redirect('/');
+        }
+    );
 };
