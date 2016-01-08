@@ -8,5 +8,6 @@
     <orderEntry type="library" name="angularjs-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="bootstrap-DefinitelyTyped" level="application" />
     <orderEntry type="library" name="node-DefinitelyTyped" level="application" />
+    <orderEntry type="library" name="angular2-boilerplate node_modules" level="project" />
   </component>
 </module>
