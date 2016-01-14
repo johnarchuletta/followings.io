@@ -20,7 +20,10 @@ System.register(['angular2/core'], function(exports_1) {
                 function AppComponent() {
                 }
                 AppComponent = __decorate([
-                    core_1.Component({}), 
+                    core_1.Component({
+                        selector: 'app',
+                        templateUrl: 'js/app/templates/app.component.html'
+                    }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
                 return AppComponent;

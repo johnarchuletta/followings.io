@@ -5,10 +5,10 @@ module.exports = function(server) {
     var controllers = require('../controllers/controllers.js');
 
     server
-        .set('views', './views')
+        .set('views', './public')
         .engine('html', require('ejs').renderFile)
 
-        .use(express.static('./static'))
+        .use(express.static('./public'))
         .use(express.static('./node_modules/angular2'))
         .use(express.static('./node_modules/systemjs'))
         .use(express.static('./node_modules/rxjs'))
