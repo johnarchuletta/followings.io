@@ -1,2 +1,87 @@
 @import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss"
 @import "common.sass"
+
+/////////////////////////////////////////////////
+//  Intro Page Component
+/////////////////////////////////////////////////
+
+div#intro
+  padding: 100px
+  color: #e6e6e6
+  font-size: 16px
+  height: 100vh
+  width: 100vw
+  background-color: #202020
+
+
+div#intro img
+  margin: 0 0 100px 0
+
+div#intro a.btn.btn-default.btn-dark
+  background-color: #202020
+  color: #bbb
+  margin: 0 0 0 15px
+
+/////////////////////////////////////////////////
+//  Main Page Component
+/////////////////////////////////////////////////
+
+header
+  //display: none
+  height: 92px
+  top: 0
+  left: 0
+  position: fixed
+  background: #202020
+  color: #bbb
+  border-bottom: 1px solid #585858
+  z-index: 10
+
+header div
+  display: inline-block
+  width: 50vw
+  float: left
+
+div#logo img
+  margin: 20px 40px 20px 20px
+
+section#nav-left
+  position: absolute
+  left: 0
+  top: 92px
+  width: 200px
+  height: 100vh
+  background-color: #adadad
+
+main
+  position: relative
+  top: 0
+  left: 0
+  padding: 100px
+  min-height: 100vh
+  color: #202020
+  overflow: auto
+
+div.wizard
+  background-color: #fff
+  padding: 50px
+  position: absolute
+  width: 960px
+  min-height: 100vh
+  left: 50%
+  transform: translate(-50%, 0)
+
+div.wizard label
+  font-size: 18px
+  font-weight: normal
+  margin: 0 3px 0 0
+  color: #888
+
+div.wizard input
+  font-size: 18px
+  color: #202020
+  padding: 0 4px
+  border-radius: 0
+  border: 1px solid #cacaca
+  height: auto
+

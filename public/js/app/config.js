@@ -6,4 +6,4 @@ System.config({
         }
     }
 });
-System.import('js/app/boot').then(null, console.error.bind(console));
+System.import('./js/app/boot').then(null, console.error.bind(console));

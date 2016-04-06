@@ -12,6 +12,7 @@ module.exports = function(server) {
         .use(express.static('./node_modules/angular2'))
         .use(express.static('./node_modules/systemjs'))
         .use(express.static('./node_modules/rxjs'))
+        .use(express.static('./node_modules/soundcloud'))
 
         .use(bodyParser.urlencoded({extended: true}))
         .use(bodyParser.json());
