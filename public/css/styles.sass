@@ -1,87 +1,121 @@
-@import "../../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss"
-@import "common.sass"
+body
+  background: url('../images/bg3.jpg') repeat
+  color: darken(#fff, 10%)
+  font-family: "Open Sans", sans-serif
 
-/////////////////////////////////////////////////
-//  Intro Page Component
-/////////////////////////////////////////////////
+a
+  color: #888
 
-div#intro
-  padding: 100px
-  color: #e6e6e6
-  font-size: 16px
-  height: 100vh
-  width: 100vw
-  background-color: #202020
+a:hover, a:active, a:focus
+  color: #fff
+  text-decoration: none
 
+h1, h2, h3, h4, h5
+  margin: 0
+  padding: 0
 
-div#intro img
-  margin: 0 0 100px 0
-
-div#intro a.btn.btn-default.btn-dark
-  background-color: #202020
-  color: #bbb
-  margin: 0 0 0 15px
-
-/////////////////////////////////////////////////
-//  Main Page Component
-/////////////////////////////////////////////////
-
-header
-  //display: none
-  height: 92px
-  top: 0
-  left: 0
-  position: fixed
-  background: #202020
-  color: #bbb
-  border-bottom: 1px solid #585858
-  z-index: 10
-
-header div
-  display: inline-block
-  width: 50vw
-  float: left
-
-div#logo img
-  margin: 20px 40px 20px 20px
-
-section#nav-left
+div.panel-user
   position: absolute
-  left: 0
-  top: 92px
-  width: 200px
-  height: 100vh
-  background-color: #adadad
-
-main
-  position: relative
-  top: 0
-  left: 0
-  padding: 100px
-  min-height: 100vh
-  color: #202020
-  overflow: auto
-
-div.wizard
-  background-color: #fff
-  padding: 50px
-  position: absolute
-  width: 960px
-  min-height: 100vh
+  top: 200px
   left: 50%
   transform: translate(-50%, 0)
 
-div.wizard label
-  font-size: 18px
-  font-weight: normal
-  margin: 0 3px 0 0
-  color: #888
+div.header-text
+  margin: 20px 0 20px 0
+  padding-bottom: 15px
 
-div.wizard input
-  font-size: 18px
-  color: #202020
-  padding: 0 4px
+section
+  position: relative
+  min-height: 100vh
+  margin: 0 0 0 70px
+  padding: 50px
+  border-bottom: 1px solid #303030
+
+section div.panel
+  color: lighten(#000, 30%)
+  box-shadow: 3px 3px 15px lighten(#000, 5%)
+
+section div.panel
+  background: transparent
+
+section div.panel-body
+  color: lighten(#000, 10%)
+  background: darken(#fff, 5%)
+  border-bottom: 1px solid rgba(256, 256, 256, 0.9)
+
+section div.panel-default
+  border: none
+
+section div.panel-default>.panel-heading
+  background: lighten(#000, 15%)
+  border-bottom: none
+
+section div.panel-footer
+  background: lighten(#000, 15%)
+  border-top: 1px solid rgba(256, 256, 256, 0.9)
+
+section div.panel-heading h3
+  color: darken(#fff, 20%)
+
+input.form-control
+  background: #fff
+  color: lighten(#000, 10%)
+  border: 1px solid lighten(#000, 80%)
   border-radius: 0
-  border: 1px solid #cacaca
-  height: auto
+  box-shadow: inset 1px 1px 7px rgba(0, 0, 0, 0.25)
 
+input.form-control:focus
+  border: 1px solid lighten(#000, 50%)
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5)
+
+div.input-group span.input-group-addon
+  font-size: 12px
+  background: #fff
+  color: lighten(#000, 10%)
+  border-color: lighten(#000, 80%)
+  border-radius: 0
+
+div.form-group:last-of-type
+  margin-bottom: 20px
+
+div.form-group p
+  font-size: 12px
+  margin: 5px 0 0 0
+
+.ng-valid[required]
+  border-left: 3px solid green
+
+.ng-invalid[required]
+  border-left: 3px solid red
+
+.ng-untouched[required]
+  border: 1px solid lighten(#000, 80%)
+
+.btn-primary
+  color: lighten(#000, 20%)
+  background-color: #fff
+  border-color: darken(#fff, 30%)
+
+.btn.btn-primary:hover, .btn.btn-primary:focus, .btn.btn-primary:active
+  color: lighten(#000, 5%)
+  background-color: darken(#fff, 10%)
+  border-color: darken(#fff, 30%)
+
+.btn-default
+  background: lighten(#000, 20%)
+  color: darken(#fff, 10%)
+  border-color: lighten(#000, 30%)
+
+.btn.btn-default:hover, .btn.btn-default:focus, .btn.btn-default:active
+  background: lighten(#000, 25%)
+  color: darken(#fff, 0%)
+  border-color: lighten(#000, 30%)
+
+.shadow
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5)
+
+.shadow-small
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2)
+
+.shadow-drop
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2)

@@ -1,0 +1,43 @@
+<section>
+    <div class="panel panel-default panel-user" style="position: relative; transform: none; left: 0; top: 0;">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <span class="glyphicon glyphicon-user" style="font-size: 14px; margin-right: 10px;"></span>My Account
+            </h3>
+        </div>
+        <div class="panel-body" style="border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; padding: 0;">
+            <div *ngIf="soundcloudUser" class="row shadow-drop" style="border-bottom:1px solid rgba(0, 0, 0, 0.1); margin: 0; padding: 0; background: #fff;">
+                <div class="col-md-12">
+                    <img src="{{soundcloudUser.avatar_url}}" style="float:left; margin-right: 15px;" class="shadow"/>
+                    <h3>{{soundcloudUser.username}}</h3>
+                    <p><a href="{{soundcloudUser.permalink_url}}" target="_blank">{{soundcloudUser.permalink_url}}</a><button class="btn btn-primary icon-button shadow-small"><span class="glyphicon glyphicon-pencil"></span></button></p>
+                    <p>{{soundcloudUser.followings_count}} followings</p>
+                </div>
+            </div>
+            <div *ngIf="!soundcloudFollowings && !wait" class="row text-center"  style="height: 600px;">
+                <div style="margin: 100px 0 100px 0;">
+                    <div style="display: block; margin: 0 auto;">
+                        <h3>Load your SoundCloud followings to get started.</h3>
+                        <div *ngIf="followingsLoadError" style="padding: 5px 10px; margin: 0;" class="alert alert-danger">Login unsuccessful.</div>
+                    </div>
+                    <button class="btn btn-primary shadow-small" (click)="getSoundCloudFollowings()">Get SoundCloud Followings</button>
+                </div>
+            </div>
+            <div *ngIf="wait" class="row text-center" style="height: 600px;">
+                <div style="margin: 100px 0 100px 0;">
+                    <span class="glyphicon glyphicon-time" style="font-size: 70px;"></span>
+                    <br>
+                    <h2>Please Wait...</h2>
+                </div>
+            </div>
+            <div *ngIf="soundcloudFollowings" class="row" style="padding: 0; overflow-y: scroll; height: 600px;">
+                <div *ngFor="#following of soundcloudFollowings; #i = index; #o = odd; #e = even;" [class.o]="o" class="col-md-12" style="padding: 3px;">
+                    <span class="data-cell">{{following.username}}</span>
+                    <span class="data-cell"><a href="{{following.permalink_url}}" target="_blank" style="font-size: 12px;">{{following.permalink_url}}</a></span>
+                    <span class="data-cell">{{following.country}}</span>
+                    <span class="data-cell">Followings: {{following.followings_count}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,4 +1,4 @@
-System.register(['angular2/core', "angular2/router", "./routes/intro-page/intro-page.component", "./routes/main-page/main-page.component", "./routes/help-page/help-page.component"], function(exports_1, context_1) {
+System.register(['angular2/core', "angular2/common", "./services/app/app.service", "./services/user/user.service", './components/navigation/navigation.component', "./components/login/login.component", "./components/register/register.component", "./components/account/account.component", "./directives/fade-in/fade-in.directive"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,55 +10,79 @@ System.register(['angular2/core', "angular2/router", "./routes/intro-page/intro-
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, intro_page_component_1, main_page_component_1, help_page_component_1;
+    var core_1, common_1, app_service_1, user_service_1, navigation_component_1, login_component_1, register_component_1, account_component_1, fade_in_directive_1;
     var AppComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (router_1_1) {
-                router_1 = router_1_1;
+            function (common_1_1) {
+                common_1 = common_1_1;
             },
-            function (intro_page_component_1_1) {
-                intro_page_component_1 = intro_page_component_1_1;
+            function (app_service_1_1) {
+                app_service_1 = app_service_1_1;
             },
-            function (main_page_component_1_1) {
-                main_page_component_1 = main_page_component_1_1;
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
             },
-            function (help_page_component_1_1) {
-                help_page_component_1 = help_page_component_1_1;
+            function (navigation_component_1_1) {
+                navigation_component_1 = navigation_component_1_1;
+            },
+            function (login_component_1_1) {
+                login_component_1 = login_component_1_1;
+            },
+            function (register_component_1_1) {
+                register_component_1 = register_component_1_1;
+            },
+            function (account_component_1_1) {
+                account_component_1 = account_component_1_1;
+            },
+            function (fade_in_directive_1_1) {
+                fade_in_directive_1 = fade_in_directive_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
-                function AppComponent() {
-                    // nothing
+                function AppComponent(_appService, _userService) {
+                    var _this = this;
+                    this._appService = _appService;
+                    this._userService = _userService;
+                    this.loginStatus = false;
+                    this.currentSection = 'login';
+                    this._appService.observable$.subscribe(function (object) {
+                        _this.appUpdate(object);
+                    });
+                    this._userService.observable$.subscribe(function (object) {
+                        _this.userUpdate(object);
+                    });
                 }
+                AppComponent.prototype.appUpdate = function (update) {
+                    if (update.currentSection) {
+                        this.currentSection = update.currentSection;
+                    }
+                };
+                AppComponent.prototype.userUpdate = function (update) {
+                    if (update) {
+                    }
+                };
+                AppComponent.prototype.ngAfterViewInit = function () {
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'app',
                         templateUrl: 'js/app/app.component.html',
-                        directives: [router_1.ROUTER_DIRECTIVES]
-                    }),
-                    router_1.RouteConfig([
-                        {
-                            path: '/intro',
-                            name: 'Intro',
-                            component: intro_page_component_1.IntroPageComponent,
-                        },
-                        {
-                            path: '/',
-                            name: 'Main',
-                            component: main_page_component_1.MainPageComponent,
-                            useAsDefault: true
-                        },
-                        {
-                            path: '/how-it-works',
-                            name: 'Help',
-                            component: help_page_component_1.HelpPageComponent,
-                        }
-                    ]), 
-                    __metadata('design:paramtypes', [])
+                        styleUrls: ['js/app/app.component.css'],
+                        directives: [
+                            common_1.FORM_DIRECTIVES,
+                            fade_in_directive_1.FadeInDirective,
+                            navigation_component_1.NavigationComponent,
+                            login_component_1.LoginComponent,
+                            register_component_1.RegisterComponent,
+                            account_component_1.AccountComponent,
+                        ],
+                        providers: [app_service_1.AppService, user_service_1.UserService]
+                    }), 
+                    __metadata('design:paramtypes', [app_service_1.AppService, user_service_1.UserService])
                 ], AppComponent);
                 return AppComponent;
             }());

@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1, context_1) {
+System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,70 +10,92 @@ System.register(['angular2/core'], function(exports_1, context_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, Subject_1;
     var SoundCloudService;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (Subject_1_1) {
+                Subject_1 = Subject_1_1;
             }],
         execute: function() {
             SoundCloudService = (function () {
                 function SoundCloudService() {
-                    this.clientId = '8a834fccc443cc9d97237b5ee7ed36ca';
-                    this.redirectUri = 'http://localhost:3000/callback.html';
-                    this.user = [];
+                    this._soundcloud = new Subject_1.Subject();
+                    this.observable$ = this._soundcloud.asObservable();
+                    this._clientId = '8a834fccc443cc9d97237b5ee7ed36ca';
+                    this._redirectUri = 'http://localhost:3000/callback.html';
+                    this._user = [];
                     SC.initialize({
-                        client_id: this.clientId,
-                        redirect_uri: this.redirectUri
+                        client_id: this._clientId,
+                        redirect_uri: this._redirectUri
                     });
                 }
+                Object.defineProperty(SoundCloudService.prototype, "user", {
+                    get: function () {
+                        return this._user;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                Object.defineProperty(SoundCloudService.prototype, "followings", {
+                    get: function () {
+                        return this._followings;
+                    },
+                    enumerable: true,
+                    configurable: true
+                });
+                SoundCloudService.prototype.resolveUser = function (username) {
+                    var _this = this;
+                    SC.get('/resolve?url=http://soundcloud.com/' + username)
+                        .then(function (response) {
+                        _this._user = response;
+                        _this._soundcloud.next({ user: true });
+                    });
+                };
                 SoundCloudService.prototype.getAllFollowings = function (username) {
-                    var self = this;
-                    return new Promise(function (resolve, reject) {
-                        // Find user's numeric ID using their SC web address
+                    var _this = this;
+                    var collect = function (userId) {
+                        SC.get('/users/' + userId + '/followings')
+                            .then(function (response) {
+                            var followings = [];
+                            var parseResponse = function (response) {
+                                if (response.collection.length > 0) {
+                                    for (var i = 0; i < response.collection.length; i++) {
+                                        followings.push(response.collection[i]);
+                                    }
+                                }
+                                if (response.next_href) {
+                                    SC.get(response.next_href.slice(27, response.next_href.length))
+                                        .then(function (response) {
+                                        parseResponse(response);
+                                    }, function (error) {
+                                        _this._soundcloud.next({ followings: false, error: error });
+                                    });
+                                }
+                                else {
+                                    _this._followings = followings;
+                                    _this._soundcloud.next({ followings: true });
+                                }
+                            };
+                            parseResponse(response);
+                        }, function (error) {
+                            console.log(error);
+                        });
+                    };
+                    if (this._user) {
+                        console.log(this._user);
+                        collect(this._user.id);
+                    }
+                    else {
                         SC.get('/resolve?url=http://soundcloud.com/' + username)
                             .then(function (response) {
-                            // Save user's information
-                            self.user = response;
-                            // Get the first 50 followers
-                            SC.get('/users/' + self.user.id + '/followings')
-                                .then(function (response) {
-                                var output = [];
-                                var followings = [];
-                                // This function will push the followings to a local array
-                                var parseResponse = function (response) {
-                                    // Iterate through delivered data, pushing to array
-                                    if (response.collection.length > 0) {
-                                        for (var i = 0; i < response.collection.length; i++) {
-                                            followings.push(response.collection[i]);
-                                        }
-                                    }
-                                    // If a URL to the next chunk of followings is supplied, make a request using said URL
-                                    if (response.next_href) {
-                                        SC.get(response.next_href.slice(27, response.next_href.length))
-                                            .then(function (response) {
-                                            parseResponse(response);
-                                        }, function (error) {
-                                            console.log(error);
-                                        });
-                                    }
-                                    else {
-                                        // If a URL was not supplied, resolve outer promise with an array of followings
-                                        output.push(self.user); // The first object in the array will always be the user's information
-                                        output.push(followings); // And the rest of the array contains the followings
-                                        resolve(output);
-                                    }
-                                };
-                                parseResponse(response); // Initiate recursive retrieval of SC followings
-                            }, function (error) {
-                                reject(error);
-                            });
-                        }, function (error) {
-                            reject(error);
-                        }); //SC.get.then
-                    }); // new Promise
-                }; // getAllFollowings
+                            collect(response.id);
+                        });
+                    }
+                };
                 SoundCloudService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
