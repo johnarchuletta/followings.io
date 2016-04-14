@@ -1,5 +1,5 @@
 "use strict";
-var BehaviorSubject_1 = require('../subject/BehaviorSubject');
+var BehaviorSubject_1 = require('../BehaviorSubject');
 var multicast_1 = require('./multicast');
 /**
  * @param value

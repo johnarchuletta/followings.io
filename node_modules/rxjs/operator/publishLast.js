@@ -1,5 +1,5 @@
 "use strict";
-var AsyncSubject_1 = require('../subject/AsyncSubject');
+var AsyncSubject_1 = require('../AsyncSubject');
 var multicast_1 = require('./multicast');
 /**
  * @return {ConnectableObservable<T>}
