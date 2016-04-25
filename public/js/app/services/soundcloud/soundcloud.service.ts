@@ -70,6 +70,7 @@ export class SoundCloudService
             SC.get( '/users/' + userId + '/followings' )
                 .then( response =>
                 {
+                    console.log('do we get here?????');
                     let followings:any = [];
                     
                     let parseResponse = ( response:any ) =>

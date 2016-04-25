@@ -72,6 +72,7 @@ System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1
                     var collect = function (userId) {
                         SC.get('/users/' + userId + '/followings')
                             .then(function (response) {
+                            console.log('do we get here?????');
                             var followings = [];
                             var parseResponse = function (response) {
                                 if (response.collection.length > 0) {

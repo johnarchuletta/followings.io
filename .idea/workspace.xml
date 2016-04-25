@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86c24c9-2372-4ad4-9af8-07af03cdde20" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.js" afterPath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.js.map" afterPath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts" afterPath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts" />
@@ -143,8 +144,8 @@
               <file leaf-file-name="soundcloud.service.ts" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="483">
-                      <caret line="107" column="40" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
+                    <state relative-caret-position="339">
+                      <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
                       <folding />
                     </state>
                   </provider>
@@ -737,12 +738,12 @@
       <workItem from="1460639296166" duration="1367000" />
       <workItem from="1460640683968" duration="904000" />
       <workItem from="1460656562452" duration="5769000" />
-      <workItem from="1460719539972" duration="134605000" />
+      <workItem from="1460719539972" duration="134735000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="471236000" />
+    <option name="totallyTimeSpent" value="471366000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1185,8 +1186,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="107" column="40" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
+        <state relative-caret-position="339">
+          <caret line="72" column="52" selection-start-line="72" selection-start-column="52" selection-end-line="72" selection-end-column="52" />
           <folding />
         </state>
       </provider>
