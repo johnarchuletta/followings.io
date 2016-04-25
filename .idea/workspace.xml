@@ -144,8 +144,8 @@
               <file leaf-file-name="soundcloud.service.ts" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="627">
-                      <caret line="118" column="34" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+                    <state relative-caret-position="403">
+                      <caret line="108" column="121" selection-start-line="108" selection-start-column="121" selection-end-line="108" selection-end-column="121" />
                       <folding />
                     </state>
                   </provider>
@@ -738,12 +738,12 @@
       <workItem from="1460639296166" duration="1367000" />
       <workItem from="1460640683968" duration="904000" />
       <workItem from="1460656562452" duration="5769000" />
-      <workItem from="1460719539972" duration="134823000" />
+      <workItem from="1460719539972" duration="135068000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="471454000" />
+    <option name="totallyTimeSpent" value="471699000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1186,8 +1186,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="118" column="34" selection-start-line="118" selection-start-column="34" selection-end-line="118" selection-end-column="34" />
+        <state relative-caret-position="403">
+          <caret line="108" column="121" selection-start-line="108" selection-start-column="121" selection-end-line="108" selection-end-column="121" />
           <folding />
         </state>
       </provider>
