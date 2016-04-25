@@ -1,41 +1,76 @@
-<section>
-    <div class="panel panel-default panel-user" style="position: relative; transform: none; left: 0; top: 0;">
+<section class="section-container" fade-in>
+    <div id="account-section" class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">
-                <span class="glyphicon glyphicon-user" style="font-size: 14px; margin-right: 10px;"></span>My Account
-            </h3>
+            <span class="fa fa-users" aria-hidden="true"></span>
+            <span>My Followings</span>
+            <button id="logout-button" class="btn btn-default" (click)="logOut()">LOG OUT</button>
         </div>
-        <div class="panel-body" style="border-bottom-left-radius: 3px; border-bottom-right-radius: 3px; padding: 0;">
-            <div *ngIf="soundcloudUser" class="row shadow-drop" style="border-bottom:1px solid rgba(0, 0, 0, 0.1); margin: 0; padding: 0; background: #fff;">
-                <div class="col-md-12">
-                    <img src="{{soundcloudUser.avatar_url}}" style="float:left; margin-right: 15px;" class="shadow"/>
-                    <h3>{{soundcloudUser.username}}</h3>
-                    <p><a href="{{soundcloudUser.permalink_url}}" target="_blank">{{soundcloudUser.permalink_url}}</a><button class="btn btn-primary icon-button shadow-small"><span class="glyphicon glyphicon-pencil"></span></button></p>
-                    <p>{{soundcloudUser.followings_count}} followings</p>
-                </div>
-            </div>
-            <div *ngIf="!soundcloudFollowings && !wait" class="row text-center"  style="height: 600px;">
-                <div style="margin: 100px 0 100px 0;">
-                    <div style="display: block; margin: 0 auto;">
-                        <h3>Load your SoundCloud followings to get started.</h3>
-                        <div *ngIf="followingsLoadError" style="padding: 5px 10px; margin: 0;" class="alert alert-danger">Login unsuccessful.</div>
+        <div class="panel-body no-padding">
+            <div *ngIf="soundcloudUser" class="row header-panel shadow-drop">
+                <div class="column col-md-6">
+                    <div class="pull-left">
+                        <img class="sc-avatar shadow-medium" src="{{soundcloudUser.avatar_url}}"/>
                     </div>
-                    <button class="btn btn-primary shadow-small" (click)="getSoundCloudFollowings()">Get SoundCloud Followings</button>
+                    <div id="sc-user-information">
+                        <span class="sc-username">{{soundcloudUser.username}}</span>
+                        <p><a href="{{soundcloudUser.permalink_url}}" target="_blank">{{soundcloudUser.permalink_url}}</a></p>
+                        <p>{{soundcloudUser.followings_count}} followings</p>
+                    </div>
+                </div>
+                <div class="column col-md-6">
+                    <button *ngIf="soundcloudFollowings" class="btn btn-primary shadow-small" (click)="getSoundCloudFollowings()" [tooltip]="{tip: '<span style=color:red;>Warning</span><br>This will erase search matches.', location: 'bottom', offset: true}">
+                        <span class="fa fa-refresh margin-right-5" aria-hiden="true"></span>
+                        <span>Reload Followings</span>
+                    </button>
                 </div>
             </div>
-            <div *ngIf="wait" class="row text-center" style="height: 600px;">
-                <div style="margin: 100px 0 100px 0;">
-                    <span class="glyphicon glyphicon-time" style="font-size: 70px;"></span>
-                    <br>
-                    <h2>Please Wait...</h2>
+            <div *ngIf="showLoadingNotification" class="row text-center">
+                <div id="loading-notification">
+                    <img src="images/loading3.gif">
+                    <h3>Loading your SoundCloud followings...</h3>
                 </div>
             </div>
-            <div *ngIf="soundcloudFollowings" class="row" style="padding: 0; overflow-y: scroll; height: 600px;">
-                <div *ngFor="#following of soundcloudFollowings; #i = index; #o = odd; #e = even;" [class.o]="o" class="col-md-12" style="padding: 3px;">
-                    <span class="data-cell">{{following.username}}</span>
-                    <span class="data-cell"><a href="{{following.permalink_url}}" target="_blank" style="font-size: 12px;">{{following.permalink_url}}</a></span>
-                    <span class="data-cell">{{following.country}}</span>
-                    <span class="data-cell">Followings: {{following.followings_count}}</span>
+            <!--followings view 1-->
+            <div *ngIf="false" class="row sc-following-info-header">
+                <div class="column col-md-12 sc-following-row">
+                    <div class="column col-md-6">
+                        <span>SOUNDCLOUD USER</span>
+                    </div>
+                    <div class="column col-md-3 text-center">
+                        <span>MIXCLOUD</span>
+                    </div>
+                    <div class="column col-md-3 text-center">
+                        <span>HEARTHIS</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="false" class="row sc-followings">
+                <div *ngFor="#following of soundcloudFollowings; #index = index; #odd = odd; #even = even;" [class.odd]="odd" class="column col-md-12 sc-following-row">
+                    <div class="column col-md-6">
+                        <span class="data-cell"><img src="{{following.avatar_url}}" class="sc-following-avatar shadow-small"></span>
+                        <span class="data-cell"><span class="sc-following-username">{{following.username}}</span></span>
+                        <span class="data-cell"><a href="{{following.permalink_url}}" class="sc-following-url" target="_blank">{{following.permalink_url}}</a></span>
+                    </div>
+                    <div class="column col-md-3 text-center">
+                        <span *ngIf="following.mixcloud_permalink" class="fa fa-check" aria-hidden="true"></span>
+                        <span *ngIf="following.mixcloud_permalink === ''" class="fa fa-close" aria-hidden="true"></span>
+                        <span *ngIf="!following.mixcloud_permalink" class="fa fa-question" aria-hidden="true"></span>
+                    </div>
+                    <div class="column col-md-3 text-center">
+                        <span *ngIf="following.hearthis_permalink" class="fa fa-check" aria-hidden="true"></span>
+                        <span *ngIf="following.hearthis_permalink ===''" class="fa fa-close" aria-hidden="true"></span>
+                        <span *ngIf="!following.hearthis_permalink" class="fa fa-question" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+            <!--followings view 2-->
+            <div *ngIf="soundcloudFollowings">
+                <div *ngFor="#following of soundcloudFollowings" class="col-md-1 column pull-left following-cell" [tooltip]="{tip: following.username, location: 'bottom', offset: true}">
+                    <a href="{{following.permalink_url}}" target="_blank">
+                        <div>
+                            <img src="{{following.avatar_url}}">
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

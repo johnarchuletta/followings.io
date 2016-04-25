@@ -23,8 +23,8 @@ System.register(["angular2/core", "rxjs/Subject"], function(exports_1, context_1
         execute: function() {
             AppService = (function () {
                 function AppService() {
-                    this._appUpdate = new Subject_1.Subject();
-                    this.observable$ = this._appUpdate.asObservable();
+                    this._update = new Subject_1.Subject();
+                    this.observable$ = this._update.asObservable();
                     this._loginStatus = false;
                     this._currentSection = 'login';
                     // Do nothing
@@ -35,7 +35,7 @@ System.register(["angular2/core", "rxjs/Subject"], function(exports_1, context_1
                     },
                     set: function (status) {
                         this._loginStatus = status;
-                        this._appUpdate.next({ 'loginStatus': this._loginStatus });
+                        this._update.next({ 'loginStatus': this._loginStatus });
                     },
                     enumerable: true,
                     configurable: true
@@ -46,7 +46,7 @@ System.register(["angular2/core", "rxjs/Subject"], function(exports_1, context_1
                     },
                     set: function (section) {
                         this._currentSection = section;
-                        this._appUpdate.next({ 'currentSection': this._currentSection });
+                        this._update.next({ 'currentSection': this._currentSection });
                     },
                     enumerable: true,
                     configurable: true

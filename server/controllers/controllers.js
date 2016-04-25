@@ -1,6 +1,7 @@
 var crypto = require( 'crypto' );
 var mongoose = require( 'mongoose' );
 var User = mongoose.model( 'User', User );
+var dateFormat = require( 'dateformat' );
 
 exports.login = function( req, res )
 {
@@ -11,7 +12,7 @@ exports.login = function( req, res )
     {
         if ( found )
         {
-            console.log( '*** User ' + found.username + ' logged in ***' );
+            console.log( '*** USER "' + found.username + '" LOGGED IN ['+ dateFormat(new Date()) +'] ***' );
             req.session.regenerate( function()
             {
                 req.session.username = found.username;
@@ -20,16 +21,12 @@ exports.login = function( req, res )
             res.send( {
                 success: true,
                 message: 'login successful',
-                user: {
-                    username: found.username,
-                    password: found.password,
-                    email: found.email,
-                    soundcloudUrl: found.soundcloudUrl
-                }
+                user: found
             } );
         }
         else
         {
+            console.log( '*** FAILED LOGIN FOR "' + username + '" ***' );
             res.send( { success: false, message: 'login failed' } );
         }
     } );
@@ -47,29 +44,24 @@ exports.register = function( req, res )
         if ( !found )
         {
             var newUser = new User( {
+                created: dateFormat( new Date() ),
                 username: username,
                 password: password,
                 email: email,
-                soundcloudUrl: soundcloudUrl
+                soundcloudUrl: soundcloudUrl,
+                followings: ''
             } );
             newUser.save( function( error, saved )
             {
                 if ( saved )
                 {
-                    console.log( '*** User successfully created ***' );
+                    console.log( '*** USER "' + username + '" CREATED ***' );
                     console.log( saved );
-                    res.send( {
-                        success: true,
-                        message: 'registration successful',
-                        username: saved.username,
-                        password: saved.password,
-                        email: saved.email,
-                        soundcloudUrl: saved.soundcloudUrl
-                    } );
+                    res.send( { success: true } );
                 }
                 else
                 {
-                    console.log( '*** Error creating appUser ***' );
+                    console.log( '*** ERROR CREATING USER ***' );
                     console.log( error );
                     res.send( { success: false, message: error } );
                 }
@@ -80,6 +72,94 @@ exports.register = function( req, res )
             res.send( { success: false, message: 'username taken' } );
         }
     } );
+};
+
+exports.followings = function( req, res )
+{
+    var username = req.body.username;
+    if ( req.body.followings )
+    {
+        var followings = JSON.stringify( req.body.followings );
+    }
+
+    // user is requesting followings
+    if ( username && !followings )
+    {
+        User.findOne( { username: username }, function( error, found )
+        {
+            if ( found )
+            {
+                if ( found.followings != '' )
+                {
+                    res.send( { followings: JSON.parse( found.followings ) } );
+                }
+                else
+                {
+                    res.send( { followings: false } );
+                }
+            }
+            else
+            {
+                res.send( { success: false } );
+            }
+        } );
+    }
+    // user is updating followings
+    else if ( username && followings )
+    {
+        User.update( { username: username }, { followings: followings }, function( error, success )
+        {
+            if ( success )
+            {
+                res.send( { saveFollowings: true } );
+            }
+            else
+            {
+                res.send( { saveFollowings: false } );
+            }
+        } );
+    }
+};
+
+exports.soundcloud = function( req, res )
+{
+    var username = req.body.username;
+    if ( req.body.soundcloudUser )
+    {
+        var soundcloudUser = req.body.soundcloudUser;
+    }
+
+    // user is retrieving soundcloud user information
+    if ( username && !soundcloudUser )
+    {
+        User.findOne( { username: username }, function( error, found )
+        {
+            if ( found.soundcloudUser )
+            {
+                res.send( { soundcloudUser: found.soundcloudUser } )
+            }
+            else
+            {
+                res.send( { soundcloudUser: false } )
+            }
+        } );
+    }
+    // user is updating soundcloud user information
+    else if ( username && soundcloudUser )
+    {
+        User.update( { username: username }, { soundcloudUser: JSON.stringify( soundcloudUser ) }, function( error, success )
+        {
+            if ( !error )
+            {
+
+                res.send( { saveSoundcloudUser: true } );
+            }
+            else
+            {
+                res.send( { saveSoundcloudUser: false } );
+            }
+        } )
+    }
 };
 
 function hashPassword( password )

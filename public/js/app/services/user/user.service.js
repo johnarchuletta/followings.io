@@ -31,9 +31,9 @@ System.register(['angular2/core', "rxjs/Subject", "angular2/http", "../app/app.s
                 function UserService(_http, _appService) {
                     this._http = _http;
                     this._appService = _appService;
-                    this._userUpdate = new Subject_1.Subject();
-                    this.observable$ = this._userUpdate.asObservable();
-                    // Do nothing
+                    this._update = new Subject_1.Subject();
+                    this.observable$ = this._update.asObservable();
+                    // constructor
                 }
                 Object.defineProperty(UserService.prototype, "user", {
                     get: function () {
@@ -42,6 +42,10 @@ System.register(['angular2/core', "rxjs/Subject", "angular2/http", "../app/app.s
                     enumerable: true,
                     configurable: true
                 });
+                UserService.prototype.clearData = function () {
+                    this._user = null;
+                    this._update.next({ 'reset': true });
+                };
                 UserService.prototype.login = function (username, password) {
                     var _this = this;
                     var headers = new http_1.Headers;
@@ -56,16 +60,17 @@ System.register(['angular2/core', "rxjs/Subject", "angular2/http", "../app/app.s
                         if (response.success) {
                             _this._user = response.user;
                             _this._appService.loginStatus = true;
-                            _this._userUpdate.next({ login: true });
+                            _this._update.next({ login: true });
                         }
                         else {
                             _this._appService.loginStatus = false;
-                            _this._userUpdate.next({ login: false, message: response.message });
+                            _this._update.next({ login: false, message: response.message });
                         }
                     });
                 };
                 UserService.prototype.register = function (username, password, email, soundcloudUrl) {
-                    return this._http.request('/register', {
+                    var _this = this;
+                    this._http.request('/register', {
                         method: 'POST',
                         headers: new http_1.Headers({
                             'Content-Type': 'application/json'
@@ -76,6 +81,105 @@ System.register(['angular2/core', "rxjs/Subject", "angular2/http", "../app/app.s
                             email: email,
                             soundcloudUrl: soundcloudUrl
                         })
+                    })
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (data) {
+                        console.log(data);
+                        if (data.success) {
+                            _this.login(username, password);
+                            _this._update.next({ register: true });
+                        }
+                        else {
+                            _this._update.next({ register: false });
+                        }
+                    }, function (error) {
+                        console.log(error);
+                    });
+                };
+                UserService.prototype.getSavedFollowings = function () {
+                    var _this = this;
+                    this._http.request('/followings', {
+                        method: 'POST',
+                        headers: new http_1.Headers({
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            username: this._user.username,
+                        })
+                    })
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (data) {
+                        if (data.followings != '') {
+                            _this._update.next({ getSavedFollowings: data.followings });
+                        }
+                        else {
+                            _this._update.next({ getSavedFollowings: false });
+                        }
+                    });
+                };
+                UserService.prototype.saveFollowings = function (followings) {
+                    var _this = this;
+                    this._http.request('/followings', {
+                        method: 'POST',
+                        headers: new http_1.Headers({
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            username: this._user.username,
+                            followings: followings
+                        })
+                    })
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (data) {
+                        if (data.saveFollowings) {
+                            _this._update.next({ saveFollowings: true });
+                        }
+                        else {
+                            _this._update.next({ saveFollowings: false });
+                        }
+                    });
+                };
+                UserService.prototype.getSoundCloudUser = function () {
+                    var _this = this;
+                    this._http.request('/soundcloud', {
+                        method: 'POST',
+                        headers: new http_1.Headers({
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            username: this._user.username,
+                        })
+                    })
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (data) {
+                        if (data.soundcloudUser) {
+                            _this._update.next({ getSoundCloudUser: JSON.parse(data.soundcloudUser) });
+                        }
+                        else {
+                            _this._update.next({ getSoundCloudUser: false });
+                        }
+                    });
+                };
+                UserService.prototype.saveSoundCloudUser = function (soundcloudUser) {
+                    var _this = this;
+                    this._http.request('/soundcloud', {
+                        method: 'POST',
+                        headers: new http_1.Headers({
+                            'Content-Type': 'application/json'
+                        }),
+                        body: JSON.stringify({
+                            username: this._user.username,
+                            soundcloudUser: soundcloudUser
+                        })
+                    })
+                        .map(function (res) { return res.json(); })
+                        .subscribe(function (data) {
+                        if (data.saveSoundcloudUser) {
+                            _this._update.next({ saveSoundcloudUser: true });
+                        }
+                        else {
+                            _this._update.next({ saveSoundcloudUser: false });
+                        }
                     });
                 };
                 UserService = __decorate([

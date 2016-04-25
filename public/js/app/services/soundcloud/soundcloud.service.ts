@@ -6,12 +6,16 @@ declare let SC:any;
 @Injectable()
 export class SoundCloudService
 {
-    private _soundcloud:Subject<{}> = new Subject<{}>();
-    observable$ = this._soundcloud.asObservable();
+    // create observable for clients to subscribe to
+    private _update:Subject<{}> = new Subject<{}>();
+    observable$ = this._update.asObservable();
     
+    // data for soundcloud api services
     private _clientId:string = '8a834fccc443cc9d97237b5ee7ed36ca';
     private _redirectUri:string = 'http://localhost:3000/callback.html';
-    private _user:any = [];
+    
+    // variables to hold soundcloud data
+    private _user:any;
     private _followings:any;
     
     constructor()
@@ -22,14 +26,31 @@ export class SoundCloudService
         } );
     }
     
-    get user():string
+    get user():any
     {
         return this._user;
     }
     
-    get followings():string
+    get followings():any
     {
         return this._followings;
+    }
+    
+    set user( user:any )
+    {
+        this._user = user;
+    }
+    
+    set followings( followings:any )
+    {
+        this._followings = followings;
+    }
+    
+    clearData()
+    {
+        this._user = null;
+        this._followings = null;
+        this._update.next( { 'clear': true } );
     }
     
     resolveUser( username:string )
@@ -38,7 +59,7 @@ export class SoundCloudService
             .then( ( response:any ) =>
             {
                 this._user = response;
-                this._soundcloud.next( { user: true } );
+                this._update.next( { resolveUser: true } );
             } );
     }
     
@@ -69,13 +90,13 @@ export class SoundCloudService
                                     parseResponse( response );
                                 }, error =>
                                 {
-                                    this._soundcloud.next( { followings: false, error: error } );
+                                    this._update.next( { followings: false, error: error } );
                                 } );
                         }
                         else
                         {
                             this._followings = followings;
-                            this._soundcloud.next( { followings: true } );
+                            this._update.next( { followings: true } );
                         }
                     };
                     parseResponse( response );
@@ -84,18 +105,12 @@ export class SoundCloudService
                     console.log( error );
                 } );
         };
-        if ( this._user )
-        {
-            console.log( this._user );
-            collect( this._user.id );
-        }
-        else
-        {
-            SC.get( '/resolve?url=http://soundcloud.com/' + username )
-                .then( ( response:any ) =>
-                {
-                    collect( response.id );
-                } );
-        }
+        SC.get( '/resolve?url=http://soundcloud.com/' + username )
+            .then( ( response:any ) =>
+            {
+                this._user = response;
+                this._update.next( { resolveUser: true } );
+                collect( response.id );
+            } );
     }
 }

@@ -19,6 +19,6 @@ export class FadeInDirective implements AfterViewInit
         setTimeout( () =>
         {
             this._dom.setStyle( this._elementRef.nativeElement, 'opacity', '1' );
-        }, 250 );
+        }, 100 );
     }
 }

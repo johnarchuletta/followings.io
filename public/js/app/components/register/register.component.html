@@ -1,71 +1,62 @@
-<section>
-    <div class="panel panel-default center-block panel-user" style="width: 500px;">
-        <div class="panel-heading">
-            <h3 class="panel-title">Register</h3>
-        </div>
-        <!-------------------------------------------------------------------------------->
+<section class="section-container" fade-in>
+    <div id="register-section" class="panel panel-default">
+        <div class="panel-heading"><span class="fa fa-pencil"></span><span>Register</span></div>
         <form id="register-form" class="form-horizontal" (ngSubmit)="register()" [ngFormModel]="registerForm">
-            <div class="panel-body">
-                <!-------------------------------------------------------------------------------->
+            <div class="panel-body padding-30">
                 <div class="row">
-                    <div class="col-md-12 text-center header-text" style="margin-bottom: 20PX; padding: 0;">
-                        <p style="font-family: 'Montserrat', 'Arial', sans-serif; font-weight: bold; font-size: 20px;">REGISTER AN ACCOUNT</p>
+                    <div class="column col-md-12 text-center">
+                        <p id="register-header-text">REGISTER AN ACCOUNT</p>
                     </div>
                 </div>
-                <!-------------------------------------------------------------------------------->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="username">Username</label>
-                    <div class="col-md-8">
+                    <label class="column col-md-4 control-label" for="username">Username</label>
+                    <div class="column col-md-8">
                         <input type="text"
                                class="form-control"
                                id="username"
                                ngControl="username"
                                required>
-                        <div *ngIf="username.hasError('invalidUsername') && username.touched" class="alert alert-danger" style="padding: 5px 10px; border-top-left-radius: 0; border-top-right-radius: 0; margin-bottom: 0;">Username must only contain letters, numbers, hyphens and underscores. (3-16 characters long)</div>
+                        <div *ngIf="username.hasError('invalidUsername') && username.touched" class="alert alert-danger remove-top-radius">Username must only contain letters, numbers, hyphens and underscores. (3-16 characters long)</div>
                     </div>
                 </div>
-                <!-------------------------------------------------------------------------------->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="password">Password</label>
-                    <div class="col-md-8">
+                    <label class="column col-md-4 control-label" for="password">Password</label>
+                    <div class="column col-md-8">
                         <input type="password"
                                class="form-control"
                                id="password"
                                ngControl="password"
                                required>
-                        <div *ngIf="password.hasError('invalidPassword') && password.touched" class="alert alert-danger" style="padding: 5px 10px; border-top-left-radius: 0; border-top-right-radius: 0; margin-bottom: 0;">Invalid password. (Letter, numbers, hyphens and underscores. Case sensitive. 6-18 characters long.)</div>
+                        <div *ngIf="password.hasError('invalidPassword') && password.touched" class="alert alert-danger remove-top-radius">Invalid password. (Letter, numbers, hyphens and underscores. Case sensitive. 6-18 characters long.)</div>
                     </div>
                 </div>
-                <!-------------------------------------------------------------------------------->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="passwordCopy"></label>
-                    <div class="col-md-8">
+                    <label class="column col-md-4 control-label" for="passwordCopy"></label>
+                    <div class="column col-md-8">
                         <input type="password"
                                class="form-control"
                                id="passwordCopy"
                                ngControl="passwordCopy"
                                placeholder="Please enter password again."
                                required>
-                        <div *ngIf="passwords.hasError('passwordMismatch') && password.touched && passwordCopy.touched" class="alert alert-danger" style="padding: 5px 10px; border-top-left-radius: 0; border-top-right-radius: 0; margin-bottom: 0;">Passwords must match.</div>
+                        <div *ngIf="passwords.hasError('passwordMismatch') && password.touched && passwordCopy.touched" class="alert alert-danger remove-top-radius">Passwords must match.</div>
                     </div>
                 </div>
-                <!-------------------------------------------------------------------------------->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="email">Email</label>
-                    <div class="col-md-8">
+                    <label class="column col-md-4 control-label" for="email">Email</label>
+                    <div class="column col-md-8">
                         <input type="email"
                                class="form-control"
                                id="email"
                                ngControl="email"
                                laceholder="you@email.com"
                                required>
-                        <div *ngIf="email.hasError('invalidEmail') && email.touched" class="alert alert-danger" style="padding: 5px 10px; border-top-left-radius: 0; border-top-right-radius: 0; margin-bottom: 0;">Invalid email.</div>
+                        <div *ngIf="email.hasError('invalidEmail') && email.touched" class="alert alert-danger remove-top-radius">Invalid email.</div>
                     </div>
                 </div>
-                <!-------------------------------------------------------------------------------->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="scurl">SoundCloud URL</label>
-                    <div class="col-md-8">
+                    <label class="column col-md-4 control-label" for="scurl">SoundCloud URL</label>
+                    <div class="column col-md-8">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon">soundcloud.com/</span>
                             <input type="text"
@@ -74,18 +65,17 @@
                                    ngControl="soundcloudUrl"
                                    required>
                         </div>
-                        <div *ngIf="soundcloudUrl.hasError('invalidSoundcloudUrl') && soundcloudUrl.touched" class="alert alert-danger" style="padding: 5px 10px; border-top-left-radius: 0; border-top-right-radius: 0; margin-bottom: 0;">Invalid SoundCloud URL.</div>
+                        <div *ngIf="soundcloudUrl.hasError('invalidSoundcloudUrl') && soundcloudUrl.touched" class="alert alert-danger remove-top-radius">Invalid SoundCloud URL.</div>
                     </div>
                 </div>
-                <div *ngIf="registrationFailed" class="row text-center" style="margin: 0;">
-                    <div style="padding: 5px 10px; margin: 0;" class="alert alert-danger">Username "{{username.value}}" is taken, please try another.</div>
+                <div *ngIf="registrationFailed" class="row text-center">
+                    <div class="alert alert-danger">Username "{{username.value}}" is taken, please try another.</div>
                 </div>
             </div>
-            <!-------------------------------------------------------------------------------->
             <div class="panel-footer">
-                <div class="form-group" style="margin-bottom: 0;">
-                    <div class="col-md-12 text-right">
-                        <button type="button" class="btn btn-default" style="margin: 0 5px 0 0;" (click)="cancel()">Cancel</button>
+                <div class="form-group">
+                    <div class="column col-md-12 text-right">
+                        <button type="button" class="btn btn-default margin-right-5" (click)="cancel()">Cancel</button>
                         <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid || !passwords.valid || registrationFailed">Register</button>
                     </div>
                 </div>

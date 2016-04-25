@@ -21,7 +21,7 @@ module.exports = function( server )
         .use( express.static( './node_modules/bootstrap-sass/assets/' ) )
         
         .use( bodyParser.urlencoded( { extended: true } ) )
-        .use( bodyParser.json() )
+        .use( bodyParser.json( { limit: '50mb' } ) )
         .use( cookieParser() )
         .use( expressSession( {
             secret: 'Cje9SjaI0',
@@ -33,10 +33,12 @@ module.exports = function( server )
                 collection: 'sessions'
             } )
         } ) );
-    
+
     server.post( '/login', controllers.login );
     server.post( '/register', controllers.register );
-    
+    server.post( '/soundcloud', controllers.soundcloud );
+    server.post( '/followings', controllers.followings );
+
     server.all( '*', function( req, res )
     {
         res.redirect( '/' );

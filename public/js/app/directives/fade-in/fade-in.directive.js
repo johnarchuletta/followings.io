@@ -32,7 +32,7 @@ System.register(['angular2/core', 'angular2/platform/browser'], function(exports
                     var _this = this;
                     setTimeout(function () {
                         _this._dom.setStyle(_this._elementRef.nativeElement, 'opacity', '1');
-                    }, 250);
+                    }, 100);
                 };
                 FadeInDirective = __decorate([
                     core_1.Directive({

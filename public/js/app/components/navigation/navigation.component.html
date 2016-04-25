@@ -1,7 +1,8 @@
 <nav>
-    <span id="logo" class="glyphicon glyphicon-cloud-download text-center"></span>
-    <a href="#"><span class="glyphicon glyphicon-user text-center"></span></a>
-    <a href="#"><span class="glyphicon glyphicon-download-alt text-center"></span></a>
-    <a href="#"><span class="glyphicon glyphicon-search text-center"></span></a>
-    <a href="#"><span class="glyphicon glyphicon-wrench text-center"></span></a>
+    <span class="fa fa-cloud-download text-center"></span>
+    <a href="#" (click)="navigate($event, 'Followings')" [tooltip]="{tip: 'My Followings', location: 'right', offset: false}"><span class="fa fa-users text-center"></span></a>
+    <a href="#" (click)="navigate($event, 'Search')" [tooltip]="{tip: 'Search', location: 'right', offset: false}"><span class="fa fa-search text-center"></span></a>
 </nav>
+<div [hidden]="hideLoginError" class="login-error shadow">
+    <span class="fa fa-exclamation-circle"></span><span>Please log in.</span>
+</div>

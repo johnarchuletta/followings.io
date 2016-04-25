@@ -1,11 +1,10 @@
 import { Injectable } from "angular2/core";
 import { Subject } from "rxjs/Subject";
-
 @Injectable()
 export class AppService
 {
-    private _appUpdate:Subject<{}> = new Subject<{}>();
-    observable$ = this._appUpdate.asObservable();
+    private _update:Subject<{}> = new Subject<{}>();
+    observable$ = this._update.asObservable();
     
     private _loginStatus:boolean = false;
     private _currentSection:string = 'login';
@@ -23,7 +22,7 @@ export class AppService
     set loginStatus( status:boolean )
     {
         this._loginStatus = status;
-        this._appUpdate.next( { 'loginStatus': this._loginStatus } );
+        this._update.next( { 'loginStatus': this._loginStatus } );
     }
     
     get currentSection():string
@@ -34,6 +33,6 @@ export class AppService
     set currentSection( section:string )
     {
         this._currentSection = section;
-        this._appUpdate.next( { 'currentSection': this._currentSection } );
+        this._update.next( { 'currentSection': this._currentSection } );
     }
 }

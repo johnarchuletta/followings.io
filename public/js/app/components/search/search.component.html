@@ -1,0 +1,61 @@
+<section class="section-container" fade-in>
+    <div id="search-section" class="panel panel-default">
+        <div class="panel-heading">
+            <span class="fa fa-search"></span>
+            <span>Search</span>
+        </div>
+        <div class="panel-body no-padding">
+            <div *ngIf="true" class="row header-panel shadow-drop">
+                <div class="column col-md-12">
+                    <div class="btn-group margin-right-10" role="group">
+                        <button class="btn btn-primary shadow-small" (click)="searchMixCloud()" [disabled]="searching">
+                            <span class="fa fa-search" style="font-size: 14px; margin-right: 5px;"></span>
+                            <span><strong>MixCloud</strong></span>
+                        </button>
+                        <button class="btn btn-primary shadow-small" (click)="searchHearThis()" [disabled]="searching">
+                            <span class="fa fa-search" style="font-size: 14px; margin-right: 5px;"></span>
+                            <span><strong>HearThis</strong></span>
+                        </button>
+                    </div>
+                    <button class="btn btn-primary shadow-small" (click)="saveFollowings()" [disabled]="searching || !searched">
+                        <span class="fa fa-cloud-upload" style="font-size: 14px; margin-right: 5px;"></span>
+                        <span><strong>Save Results</strong></span>
+                    </button>
+                </div>
+            </div>
+            <div *ngIf="soundcloudFollowings" class="row sc-following-info-header">
+                <div class="column col-md-12 sc-following-row">
+                    <div class="column col-md-4">
+                        <span>SOUNDCLOUD USER</span>
+                    </div>
+                    <div class="column col-md-4">
+                        <span class="margin-right-10">MIXCLOUD</span><span *ngIf="mixcloudIndex > 0">({{mixcloudIndex}} OF {{soundcloudFollowings.length}} SEARCHED)</span>
+                    </div>
+                    <div class="column col-md-4">
+                        <span class="margin-right-10">HEARTHIS</span><span *ngIf="hearthisIndex > 0">({{hearthisIndex}} OF {{soundcloudFollowings.length}} SEARCHED)</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="soundcloudFollowings" class="row sc-followings">
+                <div *ngFor="#following of soundcloudFollowings; #index = index; #odd = odd; #even = even;" [class.odd]="odd" class="column col-md-12 sc-following-row">
+                    <div class="column col-md-4">
+                        <span class="data-cell margin-right-10">{{index+1}}</span>
+                        <div style="display: inline-block;">
+                            <span class="data-cell"><span class="sc-following-username">{{following.username}}</span></span>
+                            <br>
+                            <span class="data-cell"><a href="{{following.permalink_url}}" class="mixcloud-url" target="_blank">{{following.permalink_url}}</a></span>
+                        </div>
+                    </div>
+                    <div class="column col-md-4">
+                        <span *ngIf="following.mixcloud" class="fa fa-check" aria-hidden="true"></span>
+                        <a *ngIf="following.mixcloud" class="mixcloud-url" href="{{following.mixcloud.url}}" target="_blank">{{following.mixcloud.url}}</a>
+                    </div>
+                    <div class="column col-md-4">
+                        <span *ngIf="following.hearthis" class="fa fa-check" aria-hidden="true"></span>
+                        <a *ngIf="following.hearthis" class="mixcloud-url" href="{{following.hearthis.permalink_url}}" target="_blank">{{following.hearthis.permalink_url}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -3,43 +3,53 @@ var mongoose = require( 'mongoose' );
 var Schema = mongoose.Schema;
 
 var User = new Schema( {
+    created: {
+        type:String,
+        required: [true, 'no create date supplied']
+    },
     username: {
         type: String,
-        required: [ true, 'Username required' ],
+        required: [ true, 'username required' ],
         validate: {
             validator: function( username )
             {
                 return /^[a-zA-Z0-9_-]{3,16}$/.test( username );
             },
-            message: 'Invalid username'
+            message: 'invalid username'
         }
     },
     password: {
         type: String,
         required: [ true, 'Password required' ],
-        min: [ 44, 'Invalid password' ]
+        min: [ 44, 'invalid password' ]
     },
     email: {
         type: String,
-        required: [ true, 'Email required' ],
+        required: [ true, 'email required' ],
         validate: {
             validator: function( email )
             {
                 return /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/.test( email );
             },
-            message: 'Invalid password'
+            message: 'invalid password'
         }
     },
     soundcloudUrl: {
         type: String,
-        required: [ true, 'SoundCloud URL required' ],
+        required: [ true, 'soundcloud url required' ],
         validate: {
             validator: function( username )
             {
                 return /^[a-zA-Z0-9_-]{3,24}$/.test( username );
             },
-            message: 'Invalid SoundCloud URL'
+            message: 'invalid soundcloud url'
         }
+    },
+    soundcloudUser: {
+        type: String
+    },
+    followings: {
+        type: String
     }
 } );
 

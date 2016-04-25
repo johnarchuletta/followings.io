@@ -23,11 +23,12 @@ System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1
         execute: function() {
             SoundCloudService = (function () {
                 function SoundCloudService() {
-                    this._soundcloud = new Subject_1.Subject();
-                    this.observable$ = this._soundcloud.asObservable();
+                    // create observable for clients to subscribe to
+                    this._update = new Subject_1.Subject();
+                    this.observable$ = this._update.asObservable();
+                    // data for soundcloud api services
                     this._clientId = '8a834fccc443cc9d97237b5ee7ed36ca';
                     this._redirectUri = 'http://localhost:3000/callback.html';
-                    this._user = [];
                     SC.initialize({
                         client_id: this._clientId,
                         redirect_uri: this._redirectUri
@@ -37,6 +38,9 @@ System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1
                     get: function () {
                         return this._user;
                     },
+                    set: function (user) {
+                        this._user = user;
+                    },
                     enumerable: true,
                     configurable: true
                 });
@@ -44,15 +48,23 @@ System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1
                     get: function () {
                         return this._followings;
                     },
+                    set: function (followings) {
+                        this._followings = followings;
+                    },
                     enumerable: true,
                     configurable: true
                 });
+                SoundCloudService.prototype.clearData = function () {
+                    this._user = null;
+                    this._followings = null;
+                    this._update.next({ 'clear': true });
+                };
                 SoundCloudService.prototype.resolveUser = function (username) {
                     var _this = this;
                     SC.get('/resolve?url=http://soundcloud.com/' + username)
                         .then(function (response) {
                         _this._user = response;
-                        _this._soundcloud.next({ user: true });
+                        _this._update.next({ resolveUser: true });
                     });
                 };
                 SoundCloudService.prototype.getAllFollowings = function (username) {
@@ -72,12 +84,12 @@ System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1
                                         .then(function (response) {
                                         parseResponse(response);
                                     }, function (error) {
-                                        _this._soundcloud.next({ followings: false, error: error });
+                                        _this._update.next({ followings: false, error: error });
                                     });
                                 }
                                 else {
                                     _this._followings = followings;
-                                    _this._soundcloud.next({ followings: true });
+                                    _this._update.next({ followings: true });
                                 }
                             };
                             parseResponse(response);
@@ -85,16 +97,12 @@ System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1
                             console.log(error);
                         });
                     };
-                    if (this._user) {
-                        console.log(this._user);
-                        collect(this._user.id);
-                    }
-                    else {
-                        SC.get('/resolve?url=http://soundcloud.com/' + username)
-                            .then(function (response) {
-                            collect(response.id);
-                        });
-                    }
+                    SC.get('/resolve?url=http://soundcloud.com/' + username)
+                        .then(function (response) {
+                        _this._user = response;
+                        _this._update.next({ resolveUser: true });
+                        collect(response.id);
+                    });
                 };
                 SoundCloudService = __decorate([
                     core_1.Injectable(), 
