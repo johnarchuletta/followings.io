@@ -3,6 +3,7 @@ import { FormBuilder, Control, ControlGroup, Validators } from "angular2/common"
 import { Validate } from "../../classes/validate";
 import { Subscription } from "rxjs/Subscription";
 
+import { AppService } from "../../services/app/app.service";
 import { UserService } from "../../services/user/user.service";
 
 import { FadeInDirective } from "../../directives/fade-in/fade-in.directive";
@@ -27,8 +28,7 @@ export class LoginComponent implements OnDestroy
     
     constructor( private _userService:UserService,
                  private _builder:FormBuilder,
-                 private _router:Router,
-                 private _routeParams:RouteParams )
+                 private _router:Router )
     {
         // create form controls
         this.username = new Control( '', Validators.compose( [ Validators.required, Validate.username ] ) );

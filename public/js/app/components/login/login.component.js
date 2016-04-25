@@ -34,12 +34,11 @@ System.register(['angular2/core', "angular2/common", "../../classes/validate", "
             }],
         execute: function() {
             LoginComponent = (function () {
-                function LoginComponent(_userService, _builder, _router, _routeParams) {
+                function LoginComponent(_userService, _builder, _router) {
                     var _this = this;
                     this._userService = _userService;
                     this._builder = _builder;
                     this._router = _router;
-                    this._routeParams = _routeParams;
                     this.loginFailed = false;
                     this.test = '';
                     // create form controls
@@ -114,7 +113,7 @@ System.register(['angular2/core', "angular2/common", "../../classes/validate", "
                         templateUrl: 'js/app/components/login/login.component.html',
                         directives: [fade_in_directive_1.FadeInDirective]
                     }), 
-                    __metadata('design:paramtypes', [user_service_1.UserService, common_1.FormBuilder, router_1.Router, router_1.RouteParams])
+                    __metadata('design:paramtypes', [user_service_1.UserService, common_1.FormBuilder, router_1.Router])
                 ], LoginComponent);
                 return LoginComponent;
             }());
