@@ -55,7 +55,7 @@ export class SoundCloudService
     
     resolveUser( username:string )
     {
-        SC.get( '/resolve?url=http://soundcloud.com/' + username )
+        SC.get( '/resolve?url=http://soundcloud.com/' + username + '&client_id=' + this._clientId )
             .then( ( response:any ) =>
             {
                 this._user = response;
@@ -107,7 +107,7 @@ export class SoundCloudService
                 } );
         };
         console.log( 'resolving sc user: /resolve?url=http://soundcloud.com/' + username + '&client_id=' + this._clientId );
-        SC.get( '/resolve?url=http://soundcloud.com/' + username )
+        SC.get( '/resolve?url=http://soundcloud.com/' + username + '&client_id=' + this._clientId )
             .then( ( response:any ) =>
             {
                 console.log( response );
