@@ -62,10 +62,12 @@ System.register(["angular2/core", "angular2/router", "../../services/app/app.ser
                     });
                     // has the soundcloud user and followings been retrieved yet?
                     if (this._soundcloudService.followings && this._soundcloudService.user) {
+                        console.log('GOT HERE');
                         this.soundcloudUser = this._soundcloudService.user;
                         this.soundcloudFollowings = this._soundcloudService.followings;
                     }
                     else {
+                        console.log('UMMM OKAY??');
                         // check if user has a stored version of their followings in our database
                         this._userService.getSavedFollowings();
                     }

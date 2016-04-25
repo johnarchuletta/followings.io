@@ -29,7 +29,6 @@ export class AccountComponent implements OnInit, OnDestroy
     showLoadingNotification:boolean = false;
     followingsLoadError:boolean = false;
 
-    //
     soundcloudServiceSubscription:Subscription;
     userServiceSubscription:Subscription;
     
@@ -61,11 +60,13 @@ export class AccountComponent implements OnInit, OnDestroy
         // has the soundcloud user and followings been retrieved yet?
         if ( this._soundcloudService.followings && this._soundcloudService.user )
         { // yes
+            console.log('GOT HERE');
             this.soundcloudUser = this._soundcloudService.user;
             this.soundcloudFollowings = this._soundcloudService.followings;
         }
         else
         { // no
+            console.log('UMMM OKAY??');
             // check if user has a stored version of their followings in our database
             this._userService.getSavedFollowings();
         }
