@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86c24c9-2372-4ad4-9af8-07af03cdde20" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/services/user/user.service.js" afterPath="$PROJECT_DIR$/public/js/app/services/user/user.service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/services/user/user.service.js.map" afterPath="$PROJECT_DIR$/public/js/app/services/user/user.service.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/services/user/user.service.ts" afterPath="$PROJECT_DIR$/public/js/app/services/user/user.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.js" afterPath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.js.map" afterPath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts" afterPath="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts" />
     </list>
     <ignored path="ja.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -124,18 +123,28 @@
               <file leaf-file-name="account.component.ts" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/public/js/app/components/account/account.component.ts">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="422">
-                      <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+                    <state relative-caret-position="326">
+                      <caret line="94" column="83" selection-start-line="94" selection-start-column="83" selection-end-line="94" selection-end-column="83" />
                       <folding />
                     </state>
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="user.service.ts" pinned="false" current-in-tab="true">
+              <file leaf-file-name="user.service.ts" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/public/js/app/services/user/user.service.ts">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="400">
-                      <caret line="106" column="41" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
+                    <state relative-caret-position="512">
+                      <caret line="113" column="71" selection-start-line="113" selection-start-column="71" selection-end-line="113" selection-end-column="71" />
+                      <folding />
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file leaf-file-name="soundcloud.service.ts" pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="483">
+                      <caret line="107" column="40" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
                       <folding />
                     </state>
                   </provider>
@@ -195,7 +204,6 @@
         <option value="$PROJECT_DIR$/server/models/models.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/js/app/directives/tooltip/tooltip-directive.ts" />
-        <option value="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts" />
         <option value="$PROJECT_DIR$/public/js/app/components/register/register.component.html" />
         <option value="$PROJECT_DIR$/server/routes/routes.js" />
         <option value="$PROJECT_DIR$/public/js/app/components/navigation/navigation.component.html" />
@@ -218,6 +226,7 @@
         <option value="$PROJECT_DIR$/public/js/app/components/login/login.component.ts" />
         <option value="$PROJECT_DIR$/public/js/app/components/account/account.component.ts" />
         <option value="$PROJECT_DIR$/public/js/app/services/user/user.service.ts" />
+        <option value="$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts" />
       </list>
     </option>
   </component>
@@ -420,6 +429,40 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="user.service.ts" />
+              <option name="myItemType" value="com.intellij.lang.typescript.compiler.ui.projectView.TypeScriptNestingTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="followings.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="followings.io" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="services" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="soundcloud" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="soundcloud.service.ts" />
               <option name="myItemType" value="com.intellij.lang.typescript.compiler.ui.projectView.TypeScriptNestingTreeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -694,12 +737,12 @@
       <workItem from="1460639296166" duration="1367000" />
       <workItem from="1460640683968" duration="904000" />
       <workItem from="1460656562452" duration="5769000" />
-      <workItem from="1460719539972" duration="134479000" />
+      <workItem from="1460719539972" duration="134605000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="471110000" />
+    <option name="totallyTimeSpent" value="471236000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -924,14 +967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1264">
-          <caret line="115" column="1" selection-start-line="115" selection-start-column="1" selection-end-line="115" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/routes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
@@ -1132,18 +1167,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/components/account/account.component.ts">
+    <entry file="file://$PROJECT_DIR$/public/js/app/services/user/user.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+        <state relative-caret-position="512">
+          <caret line="113" column="71" selection-start-line="113" selection-start-column="71" selection-end-line="113" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app/services/user/user.service.ts">
+    <entry file="file://$PROJECT_DIR$/public/js/app/components/account/account.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="106" column="41" selection-start-line="106" selection-start-column="41" selection-end-line="106" selection-end-column="41" />
+        <state relative-caret-position="326">
+          <caret line="94" column="83" selection-start-line="94" selection-start-column="83" selection-end-line="94" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app/services/soundcloud/soundcloud.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="107" column="40" selection-start-line="107" selection-start-column="40" selection-end-line="107" selection-end-column="40" />
           <folding />
         </state>
       </provider>

@@ -105,6 +105,7 @@ export class SoundCloudService
                     console.log( error );
                 } );
         };
+        console.log('resolving sc user: /resolve?url=http://soundcloud.com/' + username);
         SC.get( '/resolve?url=http://soundcloud.com/' + username )
             .then( ( response:any ) =>
             {

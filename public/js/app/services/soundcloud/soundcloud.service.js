@@ -97,6 +97,7 @@ System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1
                             console.log(error);
                         });
                     };
+                    console.log('resolving sc user: /resolve?url=http://soundcloud.com/' + username);
                     SC.get('/resolve?url=http://soundcloud.com/' + username)
                         .then(function (response) {
                         _this._user = response;
