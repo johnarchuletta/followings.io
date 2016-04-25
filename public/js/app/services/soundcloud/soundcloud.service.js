@@ -29,6 +29,7 @@ System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1
                     // data for soundcloud api services
                     this._clientId = '8a834fccc443cc9d97237b5ee7ed36ca';
                     this._redirectUri = 'http://localhost:3000/callback.html';
+                    console.log('initializing soundcloud');
                     SC.initialize({
                         client_id: this._clientId,
                         redirect_uri: this._redirectUri

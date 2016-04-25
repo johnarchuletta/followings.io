@@ -20,6 +20,7 @@ export class SoundCloudService
     
     constructor()
     {
+        console.log('initializing soundcloud');
         SC.initialize( {
             client_id: this._clientId,
             redirect_uri: this._redirectUri
