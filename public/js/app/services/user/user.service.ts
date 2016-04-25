@@ -104,6 +104,7 @@ export class UserService
             .map( res => res.json() )
             .subscribe( data =>
             {
+                console.log('BOOM--------');
                 if ( data.followings != '' )
                 {
                     this._update.next( { getSavedFollowings: data.followings } );

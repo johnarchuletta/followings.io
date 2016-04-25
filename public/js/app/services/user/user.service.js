@@ -109,6 +109,7 @@ System.register(['angular2/core', "rxjs/Subject", "angular2/http", "../app/app.s
                     })
                         .map(function (res) { return res.json(); })
                         .subscribe(function (data) {
+                        console.log('BOOM--------');
                         if (data.followings != '') {
                             _this._update.next({ getSavedFollowings: data.followings });
                         }
