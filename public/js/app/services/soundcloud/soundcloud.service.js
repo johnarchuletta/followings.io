@@ -101,9 +101,12 @@ System.register(['angular2/core', "rxjs/Subject"], function(exports_1, context_1
                     console.log('resolving sc user: /resolve?url=http://soundcloud.com/' + username);
                     SC.get('/resolve?url=http://soundcloud.com/' + username)
                         .then(function (response) {
+                        console.log(response);
                         _this._user = response;
                         _this._update.next({ resolveUser: true });
                         collect(response.id);
+                    }, function (error) {
+                        console.log(error);
                     });
                 };
                 SoundCloudService = __decorate([

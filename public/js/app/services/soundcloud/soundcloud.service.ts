@@ -70,7 +70,7 @@ export class SoundCloudService
             SC.get( '/users/' + userId + '/followings' )
                 .then( response =>
                 {
-                    console.log('do we get here?????');
+                    console.log( 'do we get here?????' );
                     let followings:any = [];
                     
                     let parseResponse = ( response:any ) =>
@@ -106,13 +106,17 @@ export class SoundCloudService
                     console.log( error );
                 } );
         };
-        console.log('resolving sc user: /resolve?url=http://soundcloud.com/' + username);
+        console.log( 'resolving sc user: /resolve?url=http://soundcloud.com/' + username );
         SC.get( '/resolve?url=http://soundcloud.com/' + username )
             .then( ( response:any ) =>
             {
+                console.log( response );
                 this._user = response;
                 this._update.next( { resolveUser: true } );
                 collect( response.id );
+            }, error =>
+            {
+                console.log( error );
             } );
     }
 }
