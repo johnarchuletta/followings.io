@@ -2,9 +2,11 @@ var express = require( 'express' );
 var http = require( 'http' );
 var mongoose = require( 'mongoose' );
 
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost';
+
 var server = express();
 
-mongoose.connect( 'mongodb://DELETED/heroku_xfj113tp/followings', function( error )
+mongoose.connect( mongoUri + '/followings', function( error )
 {
     if ( error )
     {
