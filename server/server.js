@@ -4,7 +4,7 @@ var mongoose = require( 'mongoose' );
 
 var server = express();
 
-mongoose.connect( 'mongodb://arc:Mcarmex8089@ds029638.mlab.com:29638/heroku_xfj113tp/followings', function( error )
+mongoose.connect( 'mongodb://DELETED/heroku_xfj113tp/followings', function( error )
 {
     if ( error )
     {
