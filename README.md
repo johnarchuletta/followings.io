@@ -17,6 +17,7 @@ The app was built with the following technologies:
 - NodeJS
 - Express
 - MongoDB
+- HTML, CSS, and JavaScript/TypeScript
 
 ## Screenshots
 
