@@ -31,7 +31,7 @@ Main Page: (Non-functional do to discontinued SoundCloud API/SDK)
 
 Users can login with SoundCloud, which automatically retrieves all of the artists they are currently following. With this list, the app can conduct searches for those artists on MixCloud and HearThis.
 
-Following artists on these services would typically be a manual process and would require lots of effort on their part. This app however aims to automate that process, making it much easier to find and build their collection of artists that they follow.
+Finding all the artists you like on music streaming services are typically a very labor intensive process, which makes using other services more work than it's worth. This app however aims to automate that process, making it much easier to find and build your collection of artists that you want to follow.
 
 ## API Reference
 
@@ -49,6 +49,8 @@ If you would like to run the project on your local machine, do the following.
 - Install Node dependencies: `npm install --save`
 - Execute: `node server/server.js`
 - An Express server should now be running at: [http://localhost:3000/](http://localhost:3000/)
+
+If you are just interested in reading the tasty parts of the code, you can find the most important stuff in `/public/js/app` starting with `app.component.ts`. The `services` folder is also of particular interest for those wanting to know how it all works.
 
 ## License
 
