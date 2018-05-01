@@ -1,10 +1,61 @@
 # Followings.io
 
-### Purpose
-Allow users to search popular music streaming sites for artists they like based on who they follow on SoundCloud.
+Search popular music streaming sites for artists you like based on who you follow on SoundCloud.
 
-### Technologies Used
-The app was made using Angular 2 in it's beta phase. The back-end was written in NodeJS using Express and MongoDB. The app interacts with APIs from SoundCloud, MixCloud, and HearThis.at.
+## Motivation
 
-### Status
-The project is no longer being developed and is not currently live.
+One of the main reasons users continue to use a particular service despite their general dissatisfaction with it, is because they've already invested lots of time and energy into said service. This app aims to help lower the amount of effort needed to switch over to competing products by automating the work they would otherwise have to do by hand.
+
+## Project Status
+
+Currently, the project is not in active development or publicly deployed. The main reason being because SoundCloud has closed it's public APIs and SDK, which has rendered this project non-functional.
+
+## Technologies Used
+
+The app was built with the following technologies:
+- Angular 2 (beta phase)
+- NodeJS
+- Express
+- MongoDB
+
+## Screenshots
+
+Login Page:
+![Login Page](screenshot1.png)
+User Registration Page:
+![User Registration Page](screenshot2.png)
+Main Page: (Non-functional do to discontinued SoundCloud API/SDK)
+![Main Page](screenshot3.png)
+
+## Features
+
+Users can login with SoundCloud, which automatically retrieves all of the artists they are currently following. With this list, the app can conduct searches for those artists on MixCloud and HearThis.
+
+Following artists on these services would typically be a manual process and would require lots of effort on their part. This app however aims to automate that process, making it much easier to find and build their collection of artists that they follow.
+
+## API Reference
+
+The public APIs used in this app are:
+
+- [SoundCloud](https://developers.soundcloud.com/docs/api/guide)
+- [MixCloud](https://www.mixcloud.com/developers/)
+- [HearThis](https://hearthis.at/api-v2/)
+
+## How to use?
+
+If you would like to run the project on your local machine, do the following.
+
+- Clone repository into local folder.
+- Install Node dependencies: `npm install --save`
+- Execute: `node server/server.js`
+- An Express server should now be running at: [http://localhost:3000/](http://localhost:3000/)
+
+## License
+
+MIT © John Archuletta
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

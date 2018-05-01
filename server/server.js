@@ -2,7 +2,7 @@ var express = require( 'express' );
 var http = require( 'http' );
 var mongoose = require( 'mongoose' );
 
-var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost';
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://arc1:Mcarmex8089@ds111050.mlab.com:11050/followings';
 
 var server = express();
 
